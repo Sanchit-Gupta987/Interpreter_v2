@@ -59,8 +59,7 @@ public class SpartieScanner {
     }
 
     private Token getDivideOrComment() {
-        // Hint: Examine the character for a comparison but check the next character (as long as one is available)
-        // For example: <
+        
         char nextCharacter = source.charAt(current);
 
         if (nextCharacter == '/') {
