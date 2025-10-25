@@ -36,9 +36,9 @@ public class SpartieInterpreter {
             case SUBTRACT:
                 validateOperand(expression.operator, right);
                 return -((double)right);
+            default : 
+                return null;
         }
-        
-        return null;
     }
 
     private Object interpretBinary(Expression.BinaryExpression expression) {
@@ -98,11 +98,9 @@ public class SpartieInterpreter {
         return false;
     }
 
-    // TODO: Complete implementation of isTrue.
     private boolean isTrue(Object object) {
-        // We should return false if an object is null
-        // If an object is of type boolean, we should return the primitive equivalent of that value
-
+        if (object == null) return false;
+        if (object instanceof Boolean b) return b;
         return true;
     }
 
