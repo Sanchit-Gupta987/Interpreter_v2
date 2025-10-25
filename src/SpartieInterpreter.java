@@ -27,9 +27,7 @@ public class SpartieInterpreter {
 
     private Object interpretUnary(Expression.UnaryExpression expression) {
         Object right = interpret(expression.right);
-
-        // TODO: Complete interpreter. Check the unary operator type (! or -) and perform the operation
-        // TODO: Before negating (-), check to make sure the type is correct using the provided validateOperand method
+        
         switch (expression.operator.type) {
             case NOT:
                 return !isTrue(right);
@@ -89,12 +87,11 @@ public class SpartieInterpreter {
 
     // Helper Methods
 
-    // TODO: Complete implementation of testing for equivalency
     private boolean isEquivalent(Object left, Object right) {
-        // They are equal under the following conditions:
-        // 1. They are both null
-        // 2. Their values are the same
-
+        if (left == null && right == null) return true;
+        if (left != null) {
+            return left.equals(right);
+        }
         return false;
     }
 
