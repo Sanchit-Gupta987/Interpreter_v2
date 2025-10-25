@@ -43,7 +43,6 @@ public class SpartieInterpreter {
         Object right = interpret(expression.right);
 
         if (expression.operator.type == TokenType.ADD) {
-            // TODO: Return the correct evaluation
             if (left instanceof Double l && right instanceof Double r) {
                 return l + r;
             }
@@ -61,7 +60,6 @@ public class SpartieInterpreter {
             }
         }
 
-        // TODO: Test if the two are equivalent or not equivalent
         switch(expression.operator.type) {
             case EQUIVALENT:
                 return isEquivalent(left, right);
@@ -69,8 +67,7 @@ public class SpartieInterpreter {
                 return !isEquivalent(left, right);
         }
 
-        // At this point, we can validate if our operands are doubles because they cannot be Strings for the other
-        // operation
+        // At this point, we can validate if our operands are doubles because they cannot be Strings for the other operation
         validateOperands(expression.operator, left, right);
 
         // TODO: Handle binary operator for operands. Keep in mind, at this point, we know they are doubles, but you
@@ -78,21 +75,20 @@ public class SpartieInterpreter {
         // TODO: we do not support >, >=, <, or <= on Strings
         switch(expression.operator.type) {
             case SUBTRACT:
-                return null;
+                return (double) left - (double) right;
             case MULTIPLY:
-                return null;
+                return (double) left * (double) right;
             case DIVIDE:
-                return null;
+                return (double) left / (double) right;
             case GREATER_THAN:
-                return null;
+                return (double) left > (double) right;
             case GREATER_EQUAL:
-                return null;
+                return (double) left >= (double) right;
             case LESS_THAN:
-                return null;
+                return (double) left < (double) right;
             case LESS_EQUAL:
-                return null;
+                return (double) left <= (double) right;
         }
-
         return null;
     }
 
