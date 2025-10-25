@@ -27,35 +27,46 @@ public class SpartieInterpreter {
 
     private Object interpretUnary(Expression.UnaryExpression expression) {
         Object right = interpret(expression.right);
-        
+
         switch (expression.operator.type) {
             case NOT:
                 return !isTrue(right);
             case SUBTRACT:
                 validateOperand(expression.operator, right);
                 return -((double)right);
-            default : 
-                return null;
         }
+        return null;
     }
 
     private Object interpretBinary(Expression.BinaryExpression expression) {
         Object left = interpret(expression.left);
         Object right = interpret(expression.right);
 
-        // TODO: Add support for String concatenation, for example: "Jane" + "Doe"
-        // TODO: Add support for String concatenation with a double that is rounded, for example "Jane is " + 12
-        // TODO: Handle unique case with add operator that can be applied to Strings and Doubles
         if (expression.operator.type == TokenType.ADD) {
             // TODO: Return the correct evaluation
+            if (left instanceof Double l && right instanceof Double r) {
+                return l + r;
+            }
+            else if (left instanceof String l && right instanceof String r) {
+                return l + r;
+            }
+            else if (left instanceof String l && right instanceof Double r) {
+                return l + Math.round(r);
+            }
+            else if (left instanceof Double l && right instanceof String r) {
+                return Math.round(l) + r;
+            }
+            else {
+                error("Invalid types for addition on line " + expression.operator.line + " : " + left + " + " + right);
+            }
         }
 
         // TODO: Test if the two are equivalent or not equivalent
         switch(expression.operator.type) {
             case EQUIVALENT:
-                return null;
+                return isEquivalent(left, right);
             case NOT_EQUAL:
-                return null;
+                return !isEquivalent(left, right);
         }
 
         // At this point, we can validate if our operands are doubles because they cannot be Strings for the other
