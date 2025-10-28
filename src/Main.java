@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -28,7 +27,8 @@ public class Main {
                 SpartieScanner spartieScanner = new SpartieScanner(sourceCode);
                 List<Token> tokens = spartieScanner.scan();
                 for(Token token : tokens) {
-                    System.out.println(token);
+                    // System.out.println(token);
+                    //Commented out printing of tokens to reduce clutter to only final result
                 }
 
                 // Parse
