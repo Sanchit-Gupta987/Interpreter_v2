@@ -1,3 +1,6 @@
+/**
+ * Author : Sanchit Gupta(sxg1243) and Ritvik Sajja(rxs1280)
+ */
 public class SpartieInterpreter {
     Object run(Expression expression) {
         Object result = interpret(expression);
