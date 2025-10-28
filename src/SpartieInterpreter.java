@@ -50,10 +50,10 @@ public class SpartieInterpreter {
                 return l + r;
             }
             else if (left instanceof String l && right instanceof Double r) {
-                return l + Math.round(r);
+                return l + String.format("%.2f",(double) Math.round(r));
             }
             else if (left instanceof Double l && right instanceof String r) {
-                return Math.round(l) + r;
+                return String.format("%.2f",(double) Math.round(l)) + r;
             }
             else {
                 error("Invalid types for addition on line " + expression.operator.line + " : " + left + " + " + right);
